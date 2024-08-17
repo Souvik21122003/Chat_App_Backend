@@ -32,7 +32,7 @@ const registerUser = async function (req, res) {
     await newUser.save({ validateBeforeSave: false });
 
     const options = {
-      httpOnly: true,
+      httpOnly: false,
       secure: true,
       sameSite: "None",
     };
@@ -69,7 +69,7 @@ const loginUser = async function (req, res) {
     foundUser.up;
     foundUser.refreshToken = token;
 
-    console.log(token, "token found inside login");
+    // console.log(token, "token found inside login");
 
     await foundUser.save({ validateBeforeSave: false });
 
@@ -107,7 +107,7 @@ const logoutUser = async function (req, res) {
     ).select("-password");
 
     const options = {
-      httpOnly: true,
+      httpOnly: false,
       secure: true,
     };
 
